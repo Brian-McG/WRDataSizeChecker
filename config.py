@@ -1,0 +1,2 @@
+NAME = "<NAME>"
+KEY_CODE = "<KEYCODE>"
