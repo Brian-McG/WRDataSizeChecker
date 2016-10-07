@@ -92,6 +92,7 @@ ENV/
 ### JetBrains template
 .idea
 *.iml
+*.txt
 
 ## File-based project format:
 *.iws
