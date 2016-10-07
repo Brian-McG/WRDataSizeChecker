@@ -1,16 +1,13 @@
 import os
 import re
 from os import listdir
-from os.path import isfile, join, expandvars
+from os.path import isfile, join
 from datetime import datetime
 
-from config import NAME, KEY_CODE
+from config import NAME, KEY_CODE, WR_PATH, MB_LIMIT, LOG_FILE
 from windows_notification import WindowsBalloonTip
 
-WR_PATH = expandvars("%ProgramData%\\WRData")
-LOG_FILE = WR_PATH + "/WRLog.log"
 SUBMISSIONS = "submissions"
-MB_LIMIT = 3.0
 
 if __name__ == "__main__":
     db_regx = re.compile(r"db\d*.db")
