@@ -7,7 +7,7 @@ from datetime import datetime
 from config import NAME, KEY_CODE, WR_PATH, MB_LIMIT, LOG_FILE
 from windows_notification import WindowsBalloonTip
 
-SUBMISSIONS = "submissions"
+SUBMISSIONS = os.path.dirname(os.path.realpath(__file__)) + "/submissions"
 
 if __name__ == "__main__":
     db_regx = re.compile(r"db\d*.db")
