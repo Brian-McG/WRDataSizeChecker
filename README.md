@@ -17,4 +17,16 @@ Execute the following in ***cmd*** (replacing with the relevant paths) to schedu
 
 Typical PATH_TO_pythonw.exe: ```C:\Python27\pythonw.exe```<br>
 ***cmd*** can be accessed by going to start and typing it.
+
+## Example output
+### Windows alert
+***Note:*** *The default alert threshold is 100MB not 5MB as in this example*<br>
+![Example image of windows alert](https://github.com/Brian-McG/WRDataSizeChecker/blob/master/examples/example_alert_windows10.jpg)
+
+### Support ticket template
+***Note:*** *This is with config.py unmodified*<br>
+![Example support ticket template created](https://github.com/Brian-McG/WRDataSizeChecker/blob/master/examples/example_submission_template.jpg)
+
+
+
  
