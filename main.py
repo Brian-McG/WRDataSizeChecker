@@ -57,7 +57,7 @@ if __name__ == "__main__":
             f.write(message_template)
 
         w = WindowsBalloonTip()
-        w.balloon_tip("WRData exceeded {0}MB limit".format(MB_LIMIT), "WRData is currently at {0:.2f}MB".format(total),
+        w.balloon_tip("WR database exceeded {0}MB limit".format(MB_LIMIT), "Monitored database is currently at {0:.2f}MB".format(total),
                       os.path.dirname(os.path.abspath(__file__)) + "/python.ico")
 
 
