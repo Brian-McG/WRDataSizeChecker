@@ -2,6 +2,7 @@
 A simple script that checks and alerts when the WRData folder has exceeded the defined limit. If the limit is exceeded, a support ticket template is created and saved in the *submissions* folder which can then be copied as the body to a ticket.
 
 ## Requirements
+  - Windows
   - Latest [Python 2.7](https://www.python.org/downloads/)
   - Latest [pywin32](https://sourceforge.net/projects/pywin32/files/pywin32/) (Download the latest version for Python 2.7 matching the corresponding architecture [***likely win32***])
 
