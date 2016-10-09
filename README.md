@@ -1,5 +1,5 @@
 # WRDataSizeChecker
-A simple script that checks and alerts when the monitored database folders in WRData folder has exceeded the defined limit. If the limit is exceeded, a support ticket template is created and saved in the *submissions* folder which can then be copied as the body to a ticket.
+A simple script that checks and alerts when the monitored database files in WRData folder has exceeded the defined limit. If the limit is exceeded, a support ticket template is created and saved in the *submissions* folder which can then be copied as the body to a ticket.
 
 ## Requirements
   - Windows
