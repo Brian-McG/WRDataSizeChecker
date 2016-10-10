@@ -46,7 +46,8 @@ Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\Inclu
 Name: "{group}\WRDataSizeChecker"; Filename: "{app}\WRDataSizeChecker.exe"
 
 [Run]
-Filename: "schtasks.exe"; Parameters: """{app}"""
+Filename: "schtasks.exe"; Parameters: "/create /tn WRDataCheckerTask /tr ""\""{app}\WRDataSizeChecker.exe""\"" /sc daily /st 17:00:00"
+Filename: "{app}\WRDataSizeChecker.exe"; Flags: shellexec
 
 [UninstallRun]
 Filename: "schtasks.exe"; Parameters: "/Delete /TN WRDataCheckerTask /F"
