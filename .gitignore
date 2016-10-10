@@ -93,6 +93,8 @@ ENV/
 .idea
 *.iml
 *.txt
+output
+build
 
 ## File-based project format:
 *.iws
