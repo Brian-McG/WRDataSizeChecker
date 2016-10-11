@@ -1,14 +1,11 @@
-import os
-import re
-from os import listdir
-from os.path import isfile, join, expandvars, expanduser
-from datetime import datetime
 import ConfigParser
-
-import shutil
-
+import re
 import sys
-import platform
+from datetime import datetime
+from os import remove, path, makedirs, listdir
+from os.path import isfile, join, expandvars, expanduser, getsize
+from platform import platform
+from shutil import copyfile
 
 from windows_notification import WindowsBalloonTip
 
@@ -16,6 +13,7 @@ TEMPLATE_PREFIX = "WR_support_submission"
 SUBMISSIONS = expanduser("~/.wrdatasizechecker")
 CURRENT_FOLDER = None
 OVERWRITE = False
+
 
 def config_section_map(config, section):
     config_dict = {}
@@ -37,15 +35,14 @@ if __name__ == "__main__":
 
     # determine if application is a script file or frozen exe
     if getattr(sys, 'frozen', False):
-        CURRENT_FOLDER = os.path.dirname(sys.executable)
+        CURRENT_FOLDER = path.dirname(sys.executable)
     else:
-        CURRENT_FOLDER = os.path.dirname(os.path.abspath(__file__))
-    if not os.path.exists(SUBMISSIONS):
-        os.makedirs(SUBMISSIONS)
+        CURRENT_FOLDER = path.dirname(path.abspath(__file__))
+    if not path.exists(SUBMISSIONS):
+        makedirs(SUBMISSIONS)
 
-    if not os.path.exists(SUBMISSIONS + "/config.ini") or OVERWRITE:
-        shutil.copyfile(CURRENT_FOLDER + "/default_config.ini", SUBMISSIONS + "/config.ini")
-
+    if not path.exists(SUBMISSIONS + "/config.ini") or OVERWRITE:
+        copyfile(CURRENT_FOLDER + "/default_config.ini", SUBMISSIONS + "/config.ini")
 
     config = ConfigParser.ConfigParser()
     config.read(SUBMISSIONS + "/config.ini")
@@ -59,18 +56,18 @@ if __name__ == "__main__":
     labels = set()
     sizes = {}
 
-    previous_submission_generations = [f for f in os.listdir(SUBMISSIONS) if f != ".gitkeep"]
+    previous_submission_generations = [f for f in listdir(SUBMISSIONS) if f != ".gitkeep"]
     for f in previous_submission_generations:
         if TEMPLATE_PREFIX in f:
-            os.remove("{0}/{1}".format(SUBMISSIONS, f))
+            remove("{0}/{1}".format(SUBMISSIONS, f))
 
-    if "Windows-XP" not in platform.platform():
+    if "Windows-XP" not in platform():
         wr_path = str(expandvars(wr_file_locations["wr_path"]))
     else:
         wr_path = wr_file_locations["wr_path_xp"]
     for f in listdir(wr_path):
         if isfile(join(wr_path, f)) and db_regx.match(f) is not None:
-            size = os.path.getsize(join(wr_path, f)) / (float(1024) * float(1024))
+            size = getsize(join(wr_path, f)) / (float(1024) * float(1024))
             label = num_regx.search(f).group(0)
             total += size
             labels.add(label)

@@ -6,7 +6,7 @@ Get the latest WRDataSizeChecker release from [here](https://github.com/Brian-Mc
 
 ## Configuration
 config.ini can be found in the ```.wrdatasizechecker``` folder in the user directory. Modifying it allows the tool to automatically place your name and keycode into the support ticket template if required. It also allows configuration of the threshold required (in MB) to provide an alert and create the support ticket template.<br>
-By default, the tool will run every day at 17:00, this can be modified in task scheduler if necessary.
+By default, the tool will run every day at 20:00, this can be modified in task scheduler if necessary.
 
 ## Output
 Support ticket templates are created in the ```.wrdatasizechecker``` folder in the user directory if the limit has been exceeded.

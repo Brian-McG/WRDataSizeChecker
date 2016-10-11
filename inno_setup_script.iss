@@ -23,13 +23,17 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\WRDataSizeChecker.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\_ctypes.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\_hashlib.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\_socket.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\_ssl.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\bz2.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\default_config.ini"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\Microsoft.VC90.CRT.manifest"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\msvcm90.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\msvcp90.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\msvcr90.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\msvcr90.dll"; DestDir: "{app}"; Flags: ignoreversion  
+Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\pyexpat.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\python.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\python27.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\pywintypes27.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -38,16 +42,17 @@ Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\selec
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\unicodedata.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\win32api.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\win32gui.pyd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\win32pipe.pyd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\WRDataSizeChecker.exe.manifest"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\Include\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\bmcge\Documents\WRDataSizeChecker\dist\WRDataSizeChecker\Include"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
 Name: "{group}\WRDataSizeChecker"; Filename: "{app}\WRDataSizeChecker.exe"
 
 [Run]
-Filename: "schtasks.exe"; Parameters: "/create /tn WRDataCheckerTask /tr ""\""{app}\WRDataSizeChecker.exe""\"" /sc daily /st 17:00:00"
-Filename: "{app}\WRDataSizeChecker.exe"; Flags: shellexec
+Filename: "schtasks.exe"; Parameters: "/create /tn WRDataCheckerTask /tr ""\""{app}\WRDataSizeChecker.exe""\"" /sc daily /st 20:00:00"
+Filename: "{app}\WRDataSizeChecker.exe"; Parameters: "--clean"; Flags: shellexec
 
 [UninstallRun]
 Filename: "schtasks.exe"; Parameters: "/Delete /TN WRDataCheckerTask /F"
