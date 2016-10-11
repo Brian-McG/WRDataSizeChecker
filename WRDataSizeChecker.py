@@ -67,7 +67,7 @@ if __name__ == "__main__":
     if "Windows-XP" not in platform.platform():
         wr_path = str(expandvars(wr_file_locations["wr_path"]))
     else:
-        wr_path = wr_file_locations["wr_path_XP"]
+        wr_path = wr_file_locations["wr_path_xp"]
     for f in listdir(wr_path):
         if isfile(join(wr_path, f)) and db_regx.match(f) is not None:
             size = os.path.getsize(join(wr_path, f)) / (float(1024) * float(1024))
