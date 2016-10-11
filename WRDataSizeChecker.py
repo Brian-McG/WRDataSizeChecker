@@ -8,23 +8,14 @@ import ConfigParser
 import shutil
 
 import sys
+import platform
 
 from windows_notification import WindowsBalloonTip
 
 TEMPLATE_PREFIX = "WR_support_submission"
 SUBMISSIONS = expanduser("~/.wrdatasizechecker")
 CURRENT_FOLDER = None
-# determine if application is a script file or frozen exe
-if getattr(sys, 'frozen', False):
-    CURRENT_FOLDER = os.path.dirname(sys.executable)
-elif __file__:
-    CURRENT_FOLDER = os.path.dirname(__file__)
-if not os.path.exists(SUBMISSIONS):
-    os.makedirs(SUBMISSIONS)
-
-if not os.path.exists(SUBMISSIONS + "/default_config.ini"):
-    shutil.copyfile(CURRENT_FOLDER + "/default_config.ini", SUBMISSIONS + "/config.ini")
-
+OVERWRITE = False
 
 def config_section_map(config, section):
     config_dict = {}
@@ -39,6 +30,23 @@ def config_section_map(config, section):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        arguments = sys.argv[1:]
+        if "--clean" in arguments or "-c" in arguments:
+            OVERWRITE = True
+
+    # determine if application is a script file or frozen exe
+    if getattr(sys, 'frozen', False):
+        CURRENT_FOLDER = os.path.dirname(sys.executable)
+    else:
+        CURRENT_FOLDER = os.path.dirname(os.path.abspath(__file__))
+    if not os.path.exists(SUBMISSIONS):
+        os.makedirs(SUBMISSIONS)
+
+    if not os.path.exists(SUBMISSIONS + "/config.ini") or OVERWRITE:
+        shutil.copyfile(CURRENT_FOLDER + "/default_config.ini", SUBMISSIONS + "/config.ini")
+
+
     config = ConfigParser.ConfigParser()
     config.read(SUBMISSIONS + "/config.ini")
     user_config = config_section_map(config, "USER_CONFIG")
@@ -56,7 +64,10 @@ if __name__ == "__main__":
         if TEMPLATE_PREFIX in f:
             os.remove("{0}/{1}".format(SUBMISSIONS, f))
 
-    wr_path = str(expandvars(wr_file_locations["wr_path"]))
+    if "Windows-XP" not in platform.platform():
+        wr_path = str(expandvars(wr_file_locations["wr_path"]))
+    else:
+        wr_path = wr_file_locations["wr_path_XP"]
     for f in listdir(wr_path):
         if isfile(join(wr_path, f)) and db_regx.match(f) is not None:
             size = os.path.getsize(join(wr_path, f)) / (float(1024) * float(1024))
