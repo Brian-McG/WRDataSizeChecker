@@ -1,5 +1,5 @@
 # WRDataSizeChecker
-A simple script that checks and alerts when the monitored database files in WRData folder has exceeded the defined limit. If the limit is exceeded, a support ticket template is created which can then be copied as the body to a ticket.
+A simple script for Webroot that checks and alerts when the monitored database files in WRData folder has exceeded the defined limit. If the limit is exceeded, a support ticket template is created which can then be copied as the body to a ticket.
 
 ## Download
 Get the latest WRDataSizeChecker release from [here](https://github.com/Brian-McG/WRDataSizeChecker/releases/latest).
